@@ -75,6 +75,11 @@ flickrshow = (target, settings) ->
             parameters.method = 'flickr.people.getPhotosOf'
             parameters.user_id = _.settings.person
         
+        # If we are fetching images belonging to a user
+        else if _.settings.owner?
+            parameters.method = 'flickr.people.getPublicPhotos'
+            parameters.user_id = _.settings.owner
+        
         # If we are fetching images via a tag search or user search or both
         else if _.settings.tags? or _.settings.user?
             parameters.method = 'flickr.photos.search'
